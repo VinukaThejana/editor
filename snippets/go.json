@@ -1,0 +1,35 @@
+{
+  "require": {
+    "prefix": "@@",
+    "body": [
+      "/*",
+      "* Copyright © $CURRENT_YEAR Vinuka Kodituwakku <vinuka.t@pm.me>",
+      "*/"
+    ],
+    "description": "Copyright comment"
+  },
+  "mysql": {
+    "prefix": "mysql",
+    "body": [
+      "// Connect to the database",
+      "package main\n",
+      "import (",
+      "\t\"database/sql\"",
+      "\t\"log\"\n",
+      "\t_ \"github.com/go-sql-driver/mysql\"\n",
+      ")\n",
+
+      "func main() {",
+      "\tdb, err := sql.Open(\"mysql\", \"$1\")",
+      "\tif err != nil {",
+      "\t\tlog.Panicln(err)",
+      "\t}",
+      "\tdefer db.Close()\n",
+
+      "\tif err = db.Ping(); err != nil {",
+      "\t\tlog.Panicln(err)",
+      "\t}",
+      "}"
+    ]
+  }
+}

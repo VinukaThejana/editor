@@ -1,0 +1,27 @@
+{
+  "name": "nvim-snippets",
+  "author": "@VinukaThejana",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "./typescriptreact.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
+        "language": "java",
+        "path": "./java.json"
+      }
+    ]
+  }
+}

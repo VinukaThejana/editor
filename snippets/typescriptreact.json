@@ -1,0 +1,42 @@
+{
+  "flexContainer": {
+    "prefix": "flex",
+    "body": ["flex flex-col items-center justify-center"],
+    "description": "Create a flex container"
+  },
+  "nodejs-runtime": {
+    "prefix": "runtime-node",
+    "body": [
+      "export const config = {",
+      "\truntime: 'node'",
+      "}"
+    ]
+  },
+  "edge-runtime": {
+    "prefix": "ruintime-edge",
+    "body": [
+      "export const config = {",
+      "\truntime: 'experimental-edge'",
+      "}"
+    ]
+  },
+  "test-page": {
+    "prefix": "test-page",
+    "body": [
+      "export default function Test() {",
+      "\treturn (",
+      "\t\t<main className='flex flex-col items-center justify-center min-h-screen'>",
+      "\t\t\t<button",
+      "\t\t\t\tclassName='rounded-md border w-56 h-16'",
+      "\t\t\t\tonClick={async () => {",
+      "\t\t\t\t\t$1",
+      "\t\t\t\t}}",
+      "\t\t\t>",
+      "\t\t\t\tClick me",
+      "\t\t\t</button>",
+      "\t\t</main>",
+      "\t)",
+      "}"
+    ]
+  }
+}

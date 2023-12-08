@@ -1,0 +1,9 @@
+{
+  "require": {
+    "prefix": "sysoutf",
+    "body": [
+      "System.out.printf(\"$1\", $2)"
+    ],
+    "description": "Out put to the standered output in a formatted manner"
+  }
+}

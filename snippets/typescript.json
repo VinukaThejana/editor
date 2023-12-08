@@ -1,0 +1,29 @@
+{
+  "jsDoc": {
+    "prefix": "/**",
+    "body": [
+      "/**",
+      "* $1",
+      "**/"
+    ],
+    "description": "JsDoc comment"
+  },
+  "node-res": {
+    "prefix": "node-res",
+    "body": [
+      "res.status($1).send('$2')",
+      "return"
+    ],
+    "description": "Return a response in the node environment"
+  },
+  "edge-res": {
+    "prefix": "edge-res",
+    "body": [
+      "return new Response($1, {",
+      "\tstatus: $2",
+      "\tstatusText: '$3'",
+      "})"
+    ],
+    "description": "Return a response in the edge environment"
+  }
+}
