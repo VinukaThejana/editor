@@ -7,7 +7,6 @@ return {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         dockerfile = { "hadolint" },
-        typescriptreact = { { "dprint", "prettierd" } },
       },
       ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
       formatters = {

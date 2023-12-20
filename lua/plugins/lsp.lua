@@ -9,9 +9,9 @@ return {
         astro = {},
         jdtls = {},
         lua_ls = {},
-        eslint = {},
         tailwindcss = {},
         clangd = {},
+        biome = {},
         dockerls = {},
         docker_compose_language_service = {},
 
