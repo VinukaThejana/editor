@@ -11,7 +11,6 @@ return {
         lua_ls = {},
         tailwindcss = {},
         clangd = {},
-        biome = {},
         dockerls = {},
         docker_compose_language_service = {},
 
@@ -64,6 +63,25 @@ return {
               completeFunctionCalls = true,
             },
           },
+        },
+
+        -- @type lspconfig.options.biomejs
+        biome = {
+          cmd = {
+            "biome",
+            "lsp-proxy",
+          },
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "json",
+            "jsonc",
+            "typescript",
+            "typescript.tsx",
+            "typescriptreact",
+          },
+          root_dir = require("lspconfig").util.root_pattern("package.json", "node_modules", ".git", "biome.json"),
+          single_file_support = true,
         },
       },
     },
