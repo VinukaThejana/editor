@@ -24,23 +24,6 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move code blocks up " })
 map("n", "<C-d>", "<C-d>zz", { desc = "Move half a page down " })
 map("n", "<C-u>", "<C-u>zz", { desc = "Move half a page up " })
 
--- Vim harpoon
-map("n", "<leader>lh", ':lua require("harpoon.ui").toggle_quick_menu()<CR>', {
-  desc = "List the vim harpoon files",
-})
-map("n", "<leader>ah", ':lua require("harpoon.mark").add_file()<CR>', {
-  desc = "Add a file to the harpoon list",
-})
-map("n", "<C-k>", ':lua require("harpoon.ui").nav_next()<CR>', {
-  desc = "Switch between files in the harpoon list foward",
-})
-map("n", "<C-j>", ':lua require("harpoon.ui").nav_prev()<CR>', {
-  desc = "Switch between files in the harpoon list backward",
-})
-map("n", "<BS>", ':lua require("harpoon.ui").nav_prev()<CR>', {
-  desc = "Switch between files in the harpoon list backward",
-})
-
 -- LSP restart
 map("n", "<leader>lr", ":LspRestart<CR>", {
   desc = "Restart the language server",
