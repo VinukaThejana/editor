@@ -35,6 +35,10 @@ return {
           nls.builtins.diagnostics.tidy.with({
             filetypes = { "html", "xml" },
           }),
+          nls.builtins.formatting.biome.with({
+            filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" },
+            arg = { "format", "--write", "$FILENAME" },
+          }),
 
           -- YAML config files
           nls.builtins.diagnostics.cfn_lint.with({
