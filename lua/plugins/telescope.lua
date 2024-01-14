@@ -2,19 +2,11 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- add a keymap to browse plugin files
-      {
-        "<leader>ff",
-        function()
-          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
-        end,
-        desc = "Find Plugin File",
-      },
       -- Add a keymap to find git files
       {
         "<leader><leader>",
         function()
-          require("telescope.builtin").git_files()
+          require("telescope.builtin").find_files()
         end,
         desc = "Find git files",
       },
