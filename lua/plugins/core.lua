@@ -11,6 +11,14 @@ return {
   },
 
   {
+    "tpope/vim-fugitive",
+  },
+
+  {
+    "prichrd/netrw.nvim",
+  },
+
+  {
     "ThePrimeagen/harpoon",
     keys = {
       {
