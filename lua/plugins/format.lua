@@ -7,6 +7,7 @@ return {
       formatters_by_ft = {
         go = { "goimports", "gofumpt" },
         dockerfile = { "hadolint" },
+        typescriptreact = { "biome" },
       },
       ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
       formatters = {
@@ -28,17 +29,13 @@ return {
       local nls = require("null-ls")
       return {
         sources = {
-          -- Webdev
-          nls.builtins.diagnostics.tsc.with({
-            filetypes = { "typescript", "typescriptreact" },
-          }),
           nls.builtins.diagnostics.tidy.with({
             filetypes = { "html", "xml" },
           }),
-          nls.builtins.formatting.biome.with({
-            filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" },
-            arg = { "format", "--write", "$FILENAME" },
-          }),
+          -- nls.builtins.formatting.biome.with({
+          --   filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc" },
+          --   arg = { "format", "--write", "$FILENAME" },
+          -- }),
 
           -- YAML config files
           nls.builtins.diagnostics.cfn_lint.with({
