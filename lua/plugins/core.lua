@@ -1,12 +1,15 @@
 return {
+  -- {
+  --   "projekt0n/github-nvim-theme",
+  -- },
   {
-    "projekt0n/github-nvim-theme",
+    "dracula/vim",
   },
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "github_dark_dimmed",
+      colorscheme = "dracula",
     },
   },
 
