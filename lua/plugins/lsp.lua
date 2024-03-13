@@ -4,7 +4,19 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        pyright = {},
+        pyright = {
+          settings = {
+            pyright = {
+              disableOrganizeImports = true,
+            },
+            python = {
+              analysis = {
+                ignore = { "*" },
+              },
+            },
+          },
+        },
+        ruff_lsp = {},
         bashls = {},
         astro = {},
         jdtls = {},

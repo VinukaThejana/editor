@@ -8,6 +8,7 @@ return {
         go = { "goimports", "gofumpt" },
         dockerfile = { "hadolint" },
         typescriptreact = { "biome" },
+        python = { "ruff_format" },
       },
       ---@type table<string, conform.FormatterConfigOverride|fun(bufnr: integer): nil|conform.FormatterConfigOverride>
       formatters = {
