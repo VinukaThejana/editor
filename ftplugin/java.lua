@@ -13,7 +13,7 @@
 -- local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 --
 -- -- This is the jdtls version must be updated when teh jdtls version changes
--- local jdtls_version = "1.24.0"
+-- local jdtls_version = "1.33.0"
 --
 -- -- Helper function for creating keymaps
 -- function nnoremap(rhs, lhs, bufopts, desc)
@@ -187,4 +187,3 @@
 -- -- Finally, start jdtls. This will run the language server using the configuration we specified,
 -- -- setup the keymappings, and attach the LSP client to the current buffer
 -- jdtls.start_or_attach(config)
-
