@@ -18,6 +18,17 @@ return {
             return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
           end,
         },
+
+        pmd = {
+          command = "pmd",
+          condition = function(ctx)
+            return vim.fs.find({ "build.gradle" }, { path = ctx.filename, upward = true })[1]
+          end,
+          args = {
+            "--rulesets",
+            "/Users/vinukakodituwakku/projects/third-party/pmd/pmd-java/src/main/resources/category/java/bestpractices.xml",
+          },
+        },
       },
     },
   },
