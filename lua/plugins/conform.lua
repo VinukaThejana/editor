@@ -28,6 +28,11 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        go = { 'goimports', 'gofmt' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+        typescript = { 'biome', lsp_format = 'fallback' },
+        typescriptreact = { 'biome', lsp_format = 'fallback' },
+        javascript = { 'biome', lsp_format = 'fallback' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
