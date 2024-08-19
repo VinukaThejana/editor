@@ -2,7 +2,6 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'folke/neodev.nvim',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -17,13 +16,6 @@ return {
       'b0o/SchemaStore.nvim',
     },
     config = function()
-      require('neodev').setup {
-        -- library = {
-        --   plugins = { "nvim-dap-ui" },
-        --   types = true,
-        -- },
-      }
-
       local capabilities = nil
       if pcall(require, 'cmp_nvim_lsp') then
         capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -126,7 +118,7 @@ return {
         },
 
         elixirls = {
-          cmd = { '/home/tjdevries/.local/share/nvim/mason/bin/elixir-ls' },
+          cmd = { '/Users/vinukakodituwakku/.local/share/nvim/mason/bin/elixir-ls' },
           root_dir = require('lspconfig.util').root_pattern { 'mix.exs' },
           server_capabilities = {
             -- completionProvider = true,
@@ -136,7 +128,7 @@ return {
         },
 
         lexical = {
-          cmd = { '/home/tjdevries/.local/share/nvim/mason/bin/lexical', 'server' },
+          cmd = { '/Users/vinukakodituwakku/.local/share/nvim/mason/bin/lexical', 'server' },
           root_dir = require('lspconfig.util').root_pattern { 'mix.exs' },
           server_capabilities = {
             completionProvider = vim.NIL,
@@ -168,7 +160,6 @@ return {
         'stylua',
         'lua_ls',
         'delve',
-        -- "tailwind-language-server",
       }
 
       vim.list_extend(ensure_installed, servers_to_install)
@@ -207,6 +198,7 @@ return {
           vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = 0 })
           vim.keymap.set('n', 'gT', vim.lsp.buf.type_definition, { buffer = 0 })
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = 0 })
+          vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { buffer = 0 })
 
           vim.keymap.set('n', '<space>cr', vim.lsp.buf.rename, { buffer = 0 })
           vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = 0 })
@@ -229,13 +221,6 @@ return {
           end
         end,
       })
-
-      -- Autoformatting Setup
-      require('conform').setup {
-        formatters_by_ft = {
-          lua = { 'stylua' },
-        },
-      }
 
       vim.api.nvim_create_autocmd('BufWritePre', {
         callback = function(args)
