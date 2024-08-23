@@ -28,6 +28,17 @@ return {
         gopls = {
           settings = {
             gopls = {
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -37,6 +48,18 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
               },
+              analyses = {
+                fieldalignment = true,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+              semanticTokens = true,
             },
           },
         },
@@ -215,6 +238,11 @@ return {
         'lua_ls',
         'delve',
         'codelldb',
+        'goimports',
+        'gofumpt',
+        'gomodifytags',
+        'impl',
+        'delve',
       }
 
       vim.list_extend(ensure_installed, servers_to_install)
