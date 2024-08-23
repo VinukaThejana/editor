@@ -330,7 +330,7 @@ return {
   },
   {
     'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
+    version = '^5', -- Recommended
     ft = { 'rust' },
     opts = {
       server = {
@@ -342,6 +342,9 @@ return {
           vim.keymap.set('n', '<leader>dr', function()
             vim.cmd.RustLsp 'debuggables'
           end, { desc = 'Rust Debuggables', buffer = bufnr })
+
+          vim.cmd.RustLsp 'renderDiagnostic'
+          vim.cmd.RustLsp 'explainError'
         end,
         default_settings = {
           -- rust-analyzer language server configuration
