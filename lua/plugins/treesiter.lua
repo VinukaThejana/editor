@@ -26,6 +26,7 @@ return {
         'gitignore',
         'gitattributes',
         'json5',
+        'php',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
