@@ -271,6 +271,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "crates" },
 					{ name = "luasnip" },
+					{ name = "codeium" },
 					{ name = "path" },
 				}, {
 					{ name = "buffer" },
@@ -336,4 +337,10 @@ return {
 		},
 	},
 	{ "b0o/schemastore.nvim" },
+	{
+		"Exafunction/codeium.nvim",
+		cmd = "Codeium",
+		build = ":Codeium Auth",
+		opts = {},
+	},
 }
