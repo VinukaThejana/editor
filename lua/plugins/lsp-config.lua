@@ -13,85 +13,24 @@ return {
 			auto_install = true,
 		},
 	},
+	{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local cmp_lsp = require("cmp_nvim_lsp")
+			local capabilities = vim.tbl_deep_extend(
+				"force",
+				{},
+				vim.lsp.protocol.make_client_capabilities(),
+				cmp_lsp.default_capabilities()
+			)
 
-			local lspconfig = require("lspconfig")
-			lspconfig.tailwindcss.setup({
-				capabilities = {
-					init_options = {
-						userLanguages = {
-							elixir = "phoenix-heex",
-							eruby = "erb",
-							heex = "phoenix-heex",
-						},
-					},
-					settings = {
-						tailwindCSS = {
-							experimental = {
-								classRegex = {
-									[[class: "([^"]*)]],
-								},
-							},
-							-- filetypes_include = { "heex" },
-							-- init_options = {
-							--   userLanguages = {
-							--     elixir = "html-eex",
-							--     eelixir = "html-eex",
-							--     heex = "html-eex",
-							--   },
-							-- },
-						},
-					},
-				},
-			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.svelte.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.templ.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.biome.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.tsserver.setup({
-				capabilities = {
-					documentFormattingProvider = false,
-				},
-			})
+			local servers = {
+				bashls = true,
 
-			lspconfig.jsonls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.yamlls.setup({
-				capabilities = capabilities,
-			})
-
-			--  scripting languages
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-
-			-- ruby
-			lspconfig.solargraph.setup({
-				capabilities = capabilities,
-			})
-
-			-- golang
-			lspconfig.gopls.setup({
-				capabilities = {
+				-- Go languge server
+				gopls = {
 					gofumpt = true,
 					codelenses = {
 						gc_details = false,
@@ -125,14 +64,18 @@ return {
 					directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
 					semanticTokens = true,
 				},
-			})
 
-			-- rust
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.taplo.setup({
-				capabilities = {
+				-- PHP language server
+				phpactor = {
+					enabled = lsp == "phpactor",
+				},
+				intelephense = {
+					enabled = lsp == "intelephense",
+				},
+
+				-- Rust language server
+				rust_analyzer = true,
+				taplo = {
 					keys = {
 						{
 							"K",
@@ -147,11 +90,76 @@ return {
 						},
 					},
 				},
-			})
 
-			-- c/c++/arduino
-			lspconfig.clangd.setup({
-				capabilities = {
+				-- Frontend development configuration
+				svelte = true,
+				templ = true,
+				cssls = true,
+				-- Some languages (like typescript) have entire language plugins that can be useful:
+				--    https://github.com/pmizio/typescript-tools.nvim
+				--
+				-- But for many setups, the LSP (`tsserver`) will work just fine
+				tsserver = {
+					server_capabilities = {
+						documentFormattingProvider = false,
+					},
+				},
+				tailwindcss = {
+					init_options = {
+						userLanguages = {
+							elixir = "phoenix-heex",
+							eruby = "erb",
+							heex = "phoenix-heex",
+						},
+					},
+					settings = {
+						tailwindCSS = {
+							experimental = {
+								classRegex = {
+									[[class: "([^"]*)]],
+								},
+							},
+							-- filetypes_include = { "heex" },
+							-- init_options = {
+							--   userLanguages = {
+							--     elixir = "html-eex",
+							--     eelixir = "html-eex",
+							--     heex = "html-eex",
+							--   },
+							-- },
+						},
+					},
+				},
+				biome = true,
+				jsonls = {
+					settings = {
+						json = {
+							schemas = require("schemastore").json.schemas(),
+							validate = { enable = true },
+						},
+					},
+				},
+				yamlls = {
+					settings = {
+						yaml = {
+							schemaStore = {
+								enable = false,
+								url = "",
+							},
+							schemas = require("schemastore").yaml.schemas(),
+						},
+					},
+				},
+
+				-- Lua language server
+				lua_ls = {
+					server_capabilities = {
+						semanticTokensProvider = vim.NIL,
+					},
+				},
+
+				-- C/C++ language server
+				clangd = {
 					root_dir = function(fname)
 						return require("lspconfig.util").root_pattern(
 							"Makefile",
@@ -184,10 +192,43 @@ return {
 						clangdFileStatus = true,
 					},
 				},
+			}
+
+			require("mason").setup()
+			local ensure_installed = vim.tbl_keys(servers or {})
+			vim.list_extend(ensure_installed, {
+				"stylua",
+				"delve",
+				"codelldb",
+				"goimports",
+				"gofumpt",
+				"gomodifytags",
+				"impl",
+				"delve",
+				"phpcs",
+				"php-cs-fixer",
+			})
+			require("mason-tool-installer").setup({
+				ensure_installed = ensure_installed,
 			})
 
-			lspconfig.pbls.setup({
-				capabilities = capabilities,
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local server = servers[server_name]
+						if type(server) == "boolean" and server then
+							server = {}
+						elseif type(server) ~= "table" then
+							server = {}
+						end
+
+						-- This handles overriding only values explicitly passed
+						-- by the server configuration above. Useful when disabling
+						-- certain features of an LSP (for example, turning off formatting for tsserver)
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						require("lspconfig")[server_name].setup(server)
+					end,
+				},
 			})
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
