@@ -35,6 +35,7 @@ return {
 				typescriptreact = { "biome", lsp_format = "fallback" },
 				javascript = { "biome", lsp_format = "fallback" },
 				sql = { "sleek" },
+				cpp = { "clang-format" },
 			},
 		},
 	},
