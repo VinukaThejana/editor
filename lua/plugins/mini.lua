@@ -1,9 +1,33 @@
 return {
-	-- {
-	-- 	"echasnovski/mini.nvim",
-	-- 	config = function()
-	-- 		require("mini.ai").setup()
-	-- 		require("mini.surround").setup()
-	-- 	end,
-	-- },
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		recommended = true,
+	},
+	{
+		"echasnovski/mini.comment",
+		version = "*",
+		recommended = true,
+	},
+	{
+		"echasnovski/mini.pairs",
+		version = "*",
+		recommended = true,
+	},
+	{
+		"echasnovski/mini.completion",
+		version = "*",
+		recommended = true,
+	},
+	{
+		"echasnovski/mini.nvim",
+		version = "*",
+		recommended = true,
+		config = function()
+			require("mini.pairs").setup()
+			require("mini.completion").setup()
+			require("mini.comment").setup()
+			require("mini.surround").setup()
+		end,
+	},
 }
