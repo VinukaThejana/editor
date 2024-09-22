@@ -9,6 +9,7 @@ return {
 			"rafamadriz/friendly-snippets",
 		},
 	},
+	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -36,6 +37,7 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "luasnip" },
 					{ name = "crates" },
 					{ name = "path" },

@@ -5,17 +5,7 @@ return {
 		recommended = true,
 	},
 	{
-		"echasnovski/mini.comment",
-		version = "*",
-		recommended = true,
-	},
-	{
 		"echasnovski/mini.pairs",
-		version = "*",
-		recommended = true,
-	},
-	{
-		"echasnovski/mini.completion",
 		version = "*",
 		recommended = true,
 	},
@@ -24,10 +14,8 @@ return {
 		version = "*",
 		recommended = true,
 		config = function()
-			require("mini.pairs").setup()
-			require("mini.completion").setup()
-			require("mini.comment").setup()
 			require("mini.surround").setup()
+			require("mini.pairs").setup()
 		end,
 	},
 }
