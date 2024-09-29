@@ -46,6 +46,12 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- open quick fix list
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
+-- switch between last buffers
+vim.keymap.set("n", "<leader>`", "<cmd>b#<CR>", {
+	silent = true,
+	desc = "Switch to last buffer",
+})
+
 -- disable arrow keys in the normal mode
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
