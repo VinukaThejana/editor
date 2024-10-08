@@ -16,6 +16,8 @@ return {
 		name = "rose-pine",
 		config = function()
 			require("rose-pine").setup({
+				variant = "auto", -- auto, main, moon, or dawn
+				dark_variant = "moon", -- main, moon, or dawn
 				disable_background = true,
 				styles = {
 					italic = false,

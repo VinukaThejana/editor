@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 vim.g.background = "light"
 vim.g.have_nerd_font = true
 
-vim.opt.mouse = nil
+vim.opt.mouse = ""
 vim.opt.number = true
 vim.opt.relativenumber = true
 
