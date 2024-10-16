@@ -95,15 +95,6 @@ return {
 				svelte = true,
 				templ = true,
 				cssls = true,
-				-- Some languages (like typescript) have entire language plugins that can be useful:
-				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`tsserver`) will work just fine
-				tsserver = {
-					server_capabilities = {
-						documentFormattingProvider = false,
-					},
-				},
 				tailwindcss = {
 					init_options = {
 						userLanguages = {
@@ -242,5 +233,10 @@ return {
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {})
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {})
 		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
 	},
 }
