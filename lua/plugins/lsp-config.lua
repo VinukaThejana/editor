@@ -74,7 +74,6 @@ return {
 				},
 
 				-- Rust language server
-				rust_analyzer = true,
 				taplo = {
 					keys = {
 						{
@@ -238,5 +237,10 @@ return {
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
+		ft = { "rust" },
 	},
 }
