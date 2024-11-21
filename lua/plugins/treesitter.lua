@@ -39,7 +39,4 @@ return {
 			})
 		end,
 	},
-	{
-		"nushell/tree-sitter-nu",
-	},
 }
