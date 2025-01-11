@@ -17,17 +17,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
-		config = function()
-			local cmp_lsp = require("cmp_nvim_lsp")
-			local capabilities = vim.tbl_deep_extend(
-				"force",
-				{},
-				vim.lsp.protocol.make_client_capabilities(),
-				cmp_lsp.default_capabilities()
-			)
+		dependencies = { "saghen/blink.cmp" },
 
-			local servers = {
-				bashls = true,
+		opts = {
+			servers = {
+				bashls = {},
 
 				-- Go languge server
 				gopls = {
@@ -66,12 +60,8 @@ return {
 				},
 
 				-- PHP language server
-				phpactor = {
-					enabled = lsp == "phpactor",
-				},
-				intelephense = {
-					enabled = lsp == "intelephense",
-				},
+				phpactor = {},
+				intelephense = {},
 
 				-- Rust language server
 				taplo = {
@@ -91,9 +81,9 @@ return {
 				},
 
 				-- Frontend development configuration
-				svelte = true,
-				templ = true,
-				cssls = true,
+				svelte = {},
+				templ = {},
+				cssls = {},
 				tailwindcss = {
 					init_options = {
 						userLanguages = {
@@ -120,7 +110,7 @@ return {
 						},
 					},
 				},
-				biome = true,
+				biome = {},
 				jsonls = {
 					settings = {
 						json = {
@@ -182,10 +172,18 @@ return {
 						clangdFileStatus = true,
 					},
 				},
-			}
+			},
+		},
+
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
+			for server, config in pairs(opts.servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
 
 			require("mason").setup()
-			local ensure_installed = vim.tbl_keys(servers or {})
+			local ensure_installed = vim.tbl_keys(opts.servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua",
 				"delve",
@@ -205,7 +203,7 @@ return {
 			require("mason-lspconfig").setup({
 				handlers = {
 					function(server_name)
-						local server = servers[server_name]
+						local server = opts.servers[server_name]
 						if type(server) == "boolean" and server then
 							server = {}
 						elseif type(server) ~= "table" then
@@ -215,8 +213,8 @@ return {
 						-- This handles overriding only values explicitly passed
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for tsserver)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
+						lspconfig[server_name].setup(server)
 					end,
 				},
 			})
