@@ -4,7 +4,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("rose-pine")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	"rktjmp/lush.nvim",
@@ -58,7 +58,7 @@ return {
 	"cocopon/iceberg.vim",
 	"kepano/flexoki-neovim",
 	"ntk148v/komau.vim",
-	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "catppuccin/nvim", name = "catppuccin", flavor = "auto" },
 	"uloco/bluloco.nvim",
 	"LuRsT/austere.vim",
 	"ricardoraposo/gruvbox-minor.nvim",
