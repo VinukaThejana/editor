@@ -19,6 +19,7 @@
   "fakedonalds.nvim": { "branch": "master", "commit": "43942b6c29611a3f74431c60e11dc77bafe3bd02" },
   "flexoki-neovim": { "branch": "main", "commit": "975654bce67514114db89373539621cff42befb5" },
   "fluoromachine.nvim": { "branch": "main", "commit": "d638ea221b4c6636978f49c1987d10ff2733c23d" },
+  "flutter-tools.nvim": { "branch": "main", "commit": "d135e1d02f6a3a8808efc2b58950ab1fdd49d000" },
   "friendly-snippets": { "branch": "main", "commit": "de8fce94985873666bd9712ea3e49ee17aadb1ed" },
   "gruvbox-minor.nvim": { "branch": "main", "commit": "e3616ad7f2982211f0d9fa9e900ca6ba53ee6b12" },
   "hotdog.vim": { "branch": "master", "commit": "3b3b271e27a138a9f6d4130ee55e429ccaf78f35" },

@@ -241,4 +241,12 @@ return {
 		version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
 		ft = { "rust" },
 	},
+	{
+		"nvim-flutter/flutter-tools.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim",
+		},
+		config = true,
+	},
 }
