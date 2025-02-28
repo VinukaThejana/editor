@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.background = "light"
 vim.g.have_nerd_font = true
-
 vim.opt.mouse = ""
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -65,6 +64,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
 		vim.highlight.on_yank()
+	end,
+})
+
+-- center the screen when typing in insert mode
+vim.api.nvim_create_autocmd("InsertEnter", {
+	desc = "Center the screen when typing in insert mode",
+	pattern = "*",
+	callback = function()
+		vim.cmd("norm zz")
 	end,
 })
 
