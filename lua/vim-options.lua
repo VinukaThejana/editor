@@ -68,13 +68,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- center the screen when typing in insert mode
-vim.api.nvim_create_autocmd("InsertEnter", {
-	desc = "Center the screen when typing in insert mode",
-	pattern = "*",
-	callback = function()
-		vim.cmd("norm zz")
-	end,
-})
+-- vim.api.nvim_create_autocmd("InsertEnter", {
+-- 	desc = "Center the screen when typing in insert mode",
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.cmd("norm zz")
+-- 	end,
+-- })
 
 -- navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
