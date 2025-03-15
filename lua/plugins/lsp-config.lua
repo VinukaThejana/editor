@@ -175,6 +175,8 @@ return {
 				},
 
 				protols = {},
+
+				jdtls = {},
 			},
 		},
 
