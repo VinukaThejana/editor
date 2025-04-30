@@ -37,7 +37,7 @@ return {
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
 			keymap = {
-				preset = "none",
+				preset = "default",
 
 				["<S-Tab>"] = { "select_prev", "fallback" },
 				["<Tab>"] = { "select_next", "fallback" },
@@ -45,8 +45,20 @@ return {
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-b>"] = { "scroll_documentation_up", "fallback" },
 				["<C-f>"] = { "scroll_documentation_down", "fallback" },
-				["<C-e>"] = { "hide" },
-				["<C-CR>"] = { "accept", "fallback" },
+
+				["<CR>"] = { "accept", "fallback" },
+			},
+
+			cmdline = {
+				enabled = true,
+				keymap = {
+					["<Tab>"] = { "show", "accept" },
+				},
+				completion = {
+					menu = {
+						auto_show = false,
+					},
+				},
 			},
 
 			appearance = {
@@ -75,6 +87,11 @@ return {
 				},
 			},
 		},
+
+		fuzzy = {
+			implementation = "rust",
+		},
+
 		opts_extend = { "sources.default" },
 	},
 }
