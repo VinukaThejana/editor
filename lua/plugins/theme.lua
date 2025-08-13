@@ -4,9 +4,11 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("catppuccin")
+			vim.cmd.colorscheme("e-ink")
+			vim.opt.background = "dark"
 		end,
 	},
+	"e-ink-colorscheme/e-ink.nvim",
 	"rktjmp/lush.nvim",
 	"tckmn/hotdog.vim",
 	"dundargoc/fakedonalds.nvim",

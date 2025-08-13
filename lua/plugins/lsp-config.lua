@@ -138,6 +138,15 @@ return {
 					},
 				},
 
+				-- C# language server
+				csharp_ls = {
+					cmd = { "csharp-ls" },
+					filetypes = { "cs" },
+					init_options = {
+						AutomaticWorkspaceInit = true,
+					},
+				},
+
 				-- C/C++ language server
 				clangd = {
 					root_dir = function(fname)
